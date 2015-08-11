@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <!-- need to be changed -->
+  <name>frontend-skeleton</name>
+  <description>Allow to create a front-end project with AngularJS / bootstrap and grunt for proper build</description>
+
+  <groupId>com.github.alkpone</groupId>
+  <artifactId>frontend-maven-template</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <java.version>1.8</java.version>
+  </properties>
+
+  <scm>
+    <connection>scm:git:</connection>
+    <tag>HEAD</tag>
+  </scm>
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>2.7</version>
+        <executions>
+          <execution>
+            <id>copy-resources</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${basedir}/src/main/web</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>src/main/template</directory>
+                  <filtering>true</filtering>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>com.github.eirslett</groupId>
+        <artifactId>frontend-maven-plugin</artifactId>
+        <version>0.0.24</version>
+        <configuration>
+          <installDirectory>bin</installDirectory>
+          <workingDirectory>src/main/web</workingDirectory>
+        </configuration>
+        <executions>
+          <execution>
+            <id>install node and npm</id>
+            <goals>
+              <goal>install-node-and-npm</goal>
+            </goals>
+            <configuration>
+              <nodeVersion>v0.12.7</nodeVersion>
+              <npmVersion>2.13.4</npmVersion>
+            </configuration>
+          </execution>
+          <execution>
+            <!--
+              export npm_config_proxy http://proxy.company.com:8080
+              export npm_config_https_proxy http://proxy.company.com:8080
+              -->
+            <id>npm install</id>
+            <goals>
+              <goal>npm</goal>
+            </goals>
+          </execution>
+          <execution>
+            <!--
+              export npm_config_proxy http://proxy.company.com:8080
+              export npm_config_https_proxy http://proxy.company.com:8080
+              -->
+            <id>bower install</id>
+            <goals>
+              <goal>bower</goal>
+            </goals>
+          </execution>
+          <!--execution>
+            <id>grunt build</id>
+            <goals>
+              <goal>grunt</goal>
+            </goals>
+          </execution-->
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

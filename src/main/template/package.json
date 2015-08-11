@@ -1,0 +1,24 @@
+{
+  "name": "${name}",
+  "version": "0.0.0",
+  "description": "${description}",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "${project.scm.connection}"
+  },
+  "author": "Alban Seurat",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "angular": "~1.4.3",
+    "angular-ui-bootstrap": "~0.13.3",
+    "grunt": "~0.4.5",
+    "grunt-cli": "~0.1.13",
+    "bower": "~1.4.1"
+  },
+  "private": true
+}

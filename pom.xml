@@ -111,7 +111,7 @@
                                     </directory>
                                     <includes>
                                         <include>css/**</include>
-                                        <include>scripts/**</include>
+                                        <include>js/**</include>
                                         <include>*.html</include>
                                     </includes>
                                 </fileset>
@@ -120,6 +120,7 @@
                                         ${basedir}/src/main/web
                                     </directory>
                                     <includes>
+                                        <include>css/**</include>
                                         <include>bower.json</include>
                                         <include>package.json</include>
                                     </includes>

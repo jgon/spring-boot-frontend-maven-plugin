@@ -12,20 +12,6 @@ module.exports = function (grunt) {
                 ]
             }
         },
-        uglify: {
-            dist: {
-                options: {
-                    banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
-                    '<%= grunt.template.today("yyyy-dd-mm HH:MM") %> */\n',
-                    compress: true
-                },
-                files: {
-                    '../resources/static/scripts/main.js': [
-                        'scripts/**/*.js'
-                    ]
-                }
-            }
-        },
         lesslint: {
             dist: {
                 src: [
@@ -41,17 +27,34 @@ module.exports = function (grunt) {
         less: {
             dist: {
                 options: {
-                    banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
-                    '<%= grunt.template.today("yyyy-dd-mm HH:MM") %> */\n',
-                    cleancss: true,
-                    concat: true,
-                    compress: true
+                    cleancss: true
                 },
-                files: {
-                    '../resources/static/css/main.css': [
-                        'less/**/*.less'
-                    ]
-                }
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'less',
+                        src: ['*.less'],
+                        dest: 'css',
+                        ext: '.css'
+                    }
+                ]
+            }
+        },
+        copy: {
+            html: {
+                src: 'index.html', dest: '../resources/static/index.html'
+            }
+        },
+        useminPrepare: {
+            html: 'index.html',
+            options: {
+                dest: '../resources/static'
+            }
+        },
+        usemin: {
+            html: '../resources/static/index.html',
+            options: {
+                dest: ''
             }
         }
     };
@@ -62,11 +65,27 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-lesslint');
     grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-filerev');
+    grunt.loadNpmTasks('grunt-usemin');
+
+    // simple build task
+    grunt.registerTask('usemin-global', [
+        'copy:html',
+        'useminPrepare',
+        'concat:generated',
+        'cssmin:generated',
+        'uglify:generated',
+        //'filerev',
+        'usemin'
+    ]);
 
     grunt.registerTask('default', [
         'jshint:dist',
-        'uglify:dist',
         'lesslint:dist',
-        'less:dist'
+        'less:dist',
+        'usemin-global'
     ]);
 };

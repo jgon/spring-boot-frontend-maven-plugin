@@ -3,7 +3,6 @@ module.exports = function (grunt) {
     'use strict';
 
     var staticConfig = {
-        pkg: grunt.file.readJSON('package.json'),
         jshint: {
             dist: {
                 src: [
@@ -42,7 +41,8 @@ module.exports = function (grunt) {
         },
         copy: {
             html: {
-                src: 'index.html', dest: '../resources/static/index.html'
+                src: 'index.html',
+                dest: '../resources/static/index.html'
             }
         },
         useminPrepare: {
@@ -52,10 +52,7 @@ module.exports = function (grunt) {
             }
         },
         usemin: {
-            html: '../resources/static/index.html',
-            options: {
-                dest: ''
-            }
+            html: '../resources/static/index.html'
         }
     };
 

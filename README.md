@@ -5,7 +5,7 @@
 
 ## Description
 
-A Maven plugin allowing to integrate your less / bootstrap / angular project.
+A Maven plugin allowing to integrate web resources into a spring-boot project.
 Following "Convention over configuration" approach, you can start-up building your front-end application without worrying about configuring the build.
 
 ## Pre-requisites
@@ -46,7 +46,7 @@ You have to have installed ``nodejs`` and ``npm`` on your machine.
 You put your less files into ``less`` subdirectory, javascript file into ``scripts`` directory and [grunt](http://gruntjs.com/) under the hood will uglify, minify and concat all resources for production system.
 I use [grunt-usemin](https://github.com/yeoman/grunt-usemin) from [yeoman](http://yeoman.io/) to minify resources and html files. 
 
-Here an example of html file using ``angular`` with [blocks](https://github.com/yeoman/grunt-usemin#blocks):
+Here an example of html file with [blocks](https://github.com/yeoman/grunt-usemin#blocks):
 
 ``` html
 <!doctype html>
@@ -70,7 +70,7 @@ Here an example of html file using ``angular`` with [blocks](https://github.com/
 </body>
 </html>
 ```
-
+This example is using angular.
 All resources (css, javascript, images _not yet_) will be generated into ``src/main/resources/static`` by default to allow spring-boot to expose it naturally.
 
 ## Reporting Issues

@@ -21,10 +21,6 @@ public class GruntExecutor implements TaskExecutor {
         this.processBuilder = new ProcessBuilder().directory(workingDirectory);
     }
 
-    public void execute(Logger logger) throws MojoExecutionException, MojoFailureException {
-        this.executeWithBuilder(processBuilder, logger);
-    }
-
     public void runTask(File gruntFile, String task) throws MojoFailureException, MojoExecutionException {
         this.executeWithBuilder(
                 processBuilder.command(format("grunt --base %s --gruntfile %s %s",

@@ -1,7 +1,7 @@
-# frontend-maven-template
+# spring-boot-frontend-maven-plugin
 
 [![Apache License 2](https://img.shields.io/badge/license-ASF2-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0.txt)
-[![Build Status](https://travis-ci.org/AlbanSeurat/frontend-maven-template.svg?branch=master)](https://travis-ci.org/AlbanSeurat/frontend-maven-template)
+[![Build Status](https://travis-ci.org/AlbanSeurat/spring-boot-frontend-maven-plugin.svg?branch=master)](https://travis-ci.org/AlbanSeurat/spring-boot-frontend-maven-plugin)
 
 ## Description
 
@@ -75,11 +75,11 @@ All resources (css, javascript, images _not yet_) will be generated into ``src/m
 
 ## Reporting Issues
 
-All issues can be reported at [https://github.com/AlbanSeurat/frontend-maven-template/issues](https://github.com/AlbanSeurat/frontend-maven-template/issues)
+All issues can be reported at [https://github.com/AlbanSeurat/spring-boot-frontend-maven-plugin/issues](https://github.com/AlbanSeurat/spring-boot-frontend-maven-plugin/issues)
 
 ## Code
 
-All code can be found at [https://github.com/AlbanSeurat/frontend-maven-template](https://github.com/AlbanSeurat/frontend-maven-template)
+All code can be found at [https://github.com/AlbanSeurat/spring-boot-frontend-maven-plugin](https://github.com/AlbanSeurat/spring-boot-frontend-maven-plugin)
 
 ## License
 

@@ -41,20 +41,10 @@ final class InputStreamHandler extends Thread {
     }
 
     private static LogLevelAgnosticLogger infoLoggerFor(final Logger logger) {
-        return new LogLevelAgnosticLogger() {
-            @Override
-            public void log(String value) {
-                logger.info(value);
-            }
-        };
+        return logger::info;
     }
 
     private static LogLevelAgnosticLogger errorLoggerFor(final Logger logger) {
-        return new LogLevelAgnosticLogger() {
-            @Override
-            public void log(String value) {
-                logger.error(value);
-            }
-        };
+        return logger::error;
     }
 }

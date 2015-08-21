@@ -1,12 +1,12 @@
 language: java
 jdk:
 - oraclejdk8
-before_install: mvn install -DskipTests=true -DfinalName=spring-boot-frontend-maven-plugin-$TRAVIS_TAG
-install: mvn test
-deploy:
-  provider: releases
-  api_key:
-    secure: qbypMXJmug2sk2ov6pdYch7l6NZKwF6j2VwE/5kjdVioxpOePd4Ie8Rim+jJ2YemLEaRSCOehUmE2XjBSJIcYtxxNH78ec3aGTSAvT9wzamljl+rS/giHgYBcsFHj/5EoTJMNiZAtkf4lzXikx6Mu7o9z7QGvOgf5n3DGfpzyN2yYue/yKoJCK8EHMOYtX3DaOqSTYp/r7OQHwQO0WCXMROOEhGyJTycKOo5XFgdmD42aAAL4e9GFoFb4CBWUzQy37lEbx1IEVX4bHTRvc4qPqQSxtCI+oFfQO6c9MfdDF85Qwkj5yC495/m5398KkIkaPYehnSuZwBTOk+Iug6tTkR36svftHzw0eHSaZfDjSLKp8SCm3v+C3uljFdCA/cIz9jSXVAB/I1CD5dV/22ADrTlrlUqHfqq/biQXEDXKQZ/2JiXSRk9DczZJGT1HLPqQuT5Cs7VLXM+knlTsOoUEUbaBxE6GpoSRYpXCqoe86UuUevcFKb0KY80DrtwMySKdOVp/AJKRRtt9PUrFBqGH7nMi6uRBFP2ea3WDOueuklHD8CBe3jHRHCZcBlvEC2jNASVjAOi4WMp5BcHiTjP9r1tox8HAwU/H9IBxyc2rIgcfJlHh9JAPEZvCQ4ikRZL+2EA5QRX6cavpf9SqK8iNt+j6Xvv0Ur3UyAW8PoZz3w=
-  file: "target/spring-boot-frontend-maven-plugin-$TRAVIS_TAG.jar"
-  on:
-    repo: AlbanSeurat/spring-boot-frontend-maven-plugin
+
+after_success:
+  - test "${TRAVIS_PULL_REQUEST}" == "false" && test "${TRAVIS_TAG}" != "" && mvn deploy --settings travis-settings.xml
+
+branches:
+  only:
+    - master
+      # Build tags that match this regex in addition to building the master branch.
+    - /^spring-boot-frontend-maven-plugin-[0-9]+\.[0-9]+\.[0-9]+/

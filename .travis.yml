@@ -10,3 +10,10 @@ branches:
     - master
       # Build tags that match this regex in addition to building the master branch.
     - /^spring-boot-frontend-maven-plugin-[0-9]+\.[0-9]+\.[0-9]+/
+
+
+env:
+  global:
+    - secure: "pBl1tSrfjxuAONJNfNsnzVm2Nd+njgt1VWUaAmpK8IgD4HJ1j6lN2Yosr5aopVEdI9H0ik/aibI0X2bpAX4K5Tdv+Y8wxj+DLmvCAIO3XOgMsy3JNuvJFxVbnrvqhXmEg4LoUr+fZASGJwaD6sCO85AKIncnKdmfeRF3Z94ASq7qY9rnJHKn/ldpfVZl9w6iBumR2QGaaB44GI/i0rflV4kxsBY+qCtMMpj61iRFMDXoIg+BjkpvOl6cC45f7RU9zrm+AY8fr5l9ify3P9Bq8zKMOB4AGS/2sO04JS6CYPjILAcqJRsvVOBDJWljQY6mB3SyQmfOdZf1ZFOyGdF2CoNqC/e3GFqNHIXiXMLz6q+Bz/wRA8lrk55uilauq4w+g5wzjwiRI3U9HNF7IMWC8Fp1j507rKARmOmK5V0Xkuh8C8kFiV4oi1BN1QwH9dNXAgzvC9wTRpJfIjHNoasbjURXrhJlz/rUjMqNURWNDCZrivEo0mcrTlLbYvvB1ILxJWAjK+QS1amO0xKMZ1YeNWqWulm05uT01eeLcI+GOm8/kkH39WZmPAlKhTXPJBuZBo/XtLFynnsIV2V/iI8fjjXagRtVOCURyO/6Cl183gKvyhWN9uFrAlTYd53SYRWUNC+qnjFGBPnZ6G99G5dnbrGV3djKd8VbTUEMKkXkfQg="
+    - secure: "sjehSvZ4OhmEcveViDA3UQewhn3F6YndOdC/zT/+1QqyPVi7/lgKhcRw3bs/utOLmBHq38PtjGImtokYasL3lSXlIHkK9V4+8Wi/Tx+1/QlpTK8pjpwfWCe//VJcQ4N9D8SDjOVx9XPwFXEYR6tdcPVAkY5E5Ruq2Bn5QhnNwJQBiRHb5cjH0NgUD80p6qT3lwlC9zc48T7K0m/LMejDq2idcgM2NNTih/D+ugQ3sgj89gyrTc/j4CAsR7aNJSJ4ssnv5uYsZmrqMc+3pg/k7yp9LldfyAoK9hk8Hpo2GzQrnByXzT4ADuHg2u4NMhv27HkOiAiDnJKyS7BIEr0dNx3Plm/G41nBoIcVi3eRD/DFxCuxd+fiU9rfRoinZXk0JRHmnODPciLCMmbyTVxJzSXp0FNzOmNtk/h7O78qFDDssFKHsueCmhkRepNLlcRFnDfmLIKzKJ6ZRiPiJkGOSGHz6yIxvcxXgUXlHwky+d5QrPBM3fZdmcO99DhsQb4guZYKq0htGR0f8xOd3Y7YaxCbIicy/4uhVtkOtaYb5oMnCgya5oTUrfdLHTJVVhibMlceUo/1xRVDx1zfnuaUodITwc8C0YtPGUDWVLz8qDaGI7svnJVzeGVDIljukc9WdNAjeMSWhYmC0zz/Ebmw3zlpglMqCu2g3b9mvRnbaBs="
+

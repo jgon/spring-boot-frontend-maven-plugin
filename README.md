@@ -12,6 +12,8 @@ Following "Convention over configuration" approach, you can start-up building yo
 
 You have to have installed ``nodejs`` and ``npm`` on your machine.
 
+``Java 8`` and ``Maven 3.3`` also also required to build and use the plugin.
+
 ## Configuration
 
 * npmDependencies

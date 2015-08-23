@@ -48,10 +48,16 @@ public class FrontendMojoTest {
         assertNotNull(pom);
         assertTrue(pom.exists());
 
-        FrontendMojo frontendMojo = (FrontendMojo) rule.lookupMojo("frontend", pom );
-        assertNotNull(frontendMojo);
+        PrepareDependenciesMojo prepareDependenciesMojo = (PrepareDependenciesMojo) rule.lookupMojo("prepare-deps", pom );
+        assertNotNull(prepareDependenciesMojo);
 
-        frontendMojo.execute();
+        prepareDependenciesMojo.execute();
+
+        RunBuildMojo runBuildMojo= (RunBuildMojo) rule.lookupMojo("build", pom );
+        assertNotNull(runBuildMojo);
+
+        runBuildMojo.execute();
+
 
         assertTrue(nodeDirectory.exists());
         assertTrue(new File(nodeDirectory, "bower").exists());

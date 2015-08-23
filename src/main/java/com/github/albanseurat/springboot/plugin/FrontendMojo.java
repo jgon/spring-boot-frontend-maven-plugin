@@ -1,5 +1,6 @@
 package com.github.albanseurat.springboot.plugin;
 
+import static com.github.albanseurat.springboot.plugin.Defaults.bowerDependencies;
 import static java.util.Optional.ofNullable;
 
 import java.io.File;
@@ -15,7 +16,7 @@ import org.apache.maven.plugins.annotations.Parameter;
 public class FrontendMojo extends AbstractMojo {
 
 
-    @Parameter(defaultValue = "${basedir}/web", property = "workingDirectory", required = false)
+    @Parameter(defaultValue = "${basedir}/src/main/web", property = "workingDirectory", required = false)
     protected File workingDirectory;
 
     @Parameter(property = "npmDependencies", required = false)
@@ -33,14 +34,14 @@ public class FrontendMojo extends AbstractMojo {
 
         final NpmDependencies npmDependencies = new NpmDependencies(workingDirectory);
 
-        for (String npmDep : this.npmDependencies == null ? Defaults.npmDependencies() : this.npmDependencies) {
+        for (String npmDep : this.npmDependencies == null || this.npmDependencies.length == 0 ? Defaults.npmDependencies() : this.npmDependencies) {
             String[] npmDepDetails = npmDep.split("@");
             npmDependencies.checkExistsAndInstall(npmDepDetails[0], npmDepDetails[1]);
         }
 
         final BowerDependencies bowerDependencies = new BowerDependencies(workingDirectory);
 
-        for (String bowerDep : this.bowerDependencies == null ? Defaults.bowerDependencies() : this.bowerDependencies) {
+        for (String bowerDep : this.bowerDependencies == null || this.bowerDependencies.length == 0 ? Defaults.bowerDependencies() : this.bowerDependencies) {
             String[] bowerDepDetails = bowerDep.split("#");
             bowerDependencies.checkExistsAndInstall(bowerDepDetails[0], bowerDepDetails[1]);
         }

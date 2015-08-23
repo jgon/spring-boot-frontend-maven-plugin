@@ -1,4 +1,18 @@
 /* global module */
+var path = require('path');
+
+var lessCreateConfig = function (context, block) {
+    context.outFiles = [block.dest];
+    return { files : [
+        {
+            dest : path.join(context.outDir, block.dest),
+            src : context.inFiles.map(function (inFile) {
+                return path.join(context.inDir, inFile);
+            })
+        }
+    ]};
+};
+
 module.exports = function (grunt) {
     'use strict';
 
@@ -101,7 +115,7 @@ module.exports = function (grunt) {
                         "star-property-hack": 2,
                         "outline-none": 2,
                         "import": 2,
-                        "ids": 2,
+                        "ids": false,
                         "underscore-property-hack": 2,
                         "rules-count": 2,
                         "qualified-headings": 2,
@@ -117,36 +131,44 @@ module.exports = function (grunt) {
                 }
             }
         },
-        less: {
-            dist: {
-                options: {
-                    cleancss: true
-                },
-                files: [
-                    {
-                        expand: true,
-                        cwd: 'less',
-                        src: ['*.less'],
-                        dest: 'css',
-                        ext: '.css'
-                    }
-                ]
-            }
-        },
         copy: {
             html: {
                 src: 'index.html',
                 dest: '../resources/static/index.html'
             }
         },
+        less: {
+            generated : {
+                options: {
+                    compress: true
+                }
+            }
+        },
         useminPrepare: {
             html: 'index.html',
             options: {
-                dest: '../resources/static'
+                dest: '../resources/static',
+                flow: {
+                    steps: {
+                        'js': ['concat', 'uglifyjs'],
+                        'less': [{
+                            name: 'less',
+                            createConfig: lessCreateConfig
+                        }]
+                    },
+                    post: []
+                }
             }
         },
         usemin: {
-            html: '../resources/static/index.html'
+            html: '../resources/static/index.html',
+            options: {
+                blockReplacements: {
+                    less: function (block) {
+                        return '<link rel="stylesheet" href="' + block.dest + '" />';
+                    }
+                }
+            }
         }
     };
 
@@ -162,21 +184,15 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-filerev');
     grunt.loadNpmTasks('grunt-usemin');
 
-    // simple build task
-    grunt.registerTask('usemin-global', [
-        'copy:html',
-        'useminPrepare',
-        'concat:generated',
-        'cssmin:generated',
-        'uglify:generated',
-        //'filerev',
-        'usemin'
-    ]);
-
     grunt.registerTask('default', [
         'jshint:dist',
         'lesslint:dist',
-        'less:dist',
-        'usemin-global'
+        'copy:html',
+        'useminPrepare',
+        'concat:generated',
+        'less:generated',
+        'uglify:generated',
+        //'filerev',
+        'usemin'
     ]);
 };

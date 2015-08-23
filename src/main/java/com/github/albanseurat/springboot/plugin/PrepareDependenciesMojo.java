@@ -9,10 +9,8 @@ import org.apache.maven.plugins.annotations.Parameter;
 
 import java.io.File;
 
-import static java.util.Optional.ofNullable;
-
-@Mojo(name = "frontend", defaultPhase = LifecyclePhase.GENERATE_RESOURCES)
-public class FrontendMojo extends AbstractMojo {
+@Mojo(name = "prepare-deps", defaultPhase = LifecyclePhase.GENERATE_RESOURCES)
+public class PrepareDependenciesMojo extends AbstractMojo {
 
 
     @Parameter(defaultValue = "${basedir}/src/main/web", property = "workingDirectory", required = false)
@@ -21,13 +19,8 @@ public class FrontendMojo extends AbstractMojo {
     @Parameter(property = "npmDependencies", required = false)
     protected String[] npmDependencies;
 
-
     @Parameter(property = "bowerDependencies", required = false)
     protected String[] bowerDependencies;
-
-    @Parameter(property = "gruntFile", readonly = false)
-    protected String gruntFile;
-
 
     public void execute() throws MojoExecutionException, MojoFailureException {
 
@@ -45,7 +38,5 @@ public class FrontendMojo extends AbstractMojo {
             bowerDependencies.checkExistsAndInstall(bowerDepDetails[0], bowerDepDetails[1]);
         }
 
-        final GruntTaskRunner taskRunner = new GruntTaskRunner(workingDirectory, ofNullable(gruntFile).map(File::new));
-        taskRunner.runTask("default");
     }
 }

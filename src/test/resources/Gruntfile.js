@@ -115,7 +115,7 @@ module.exports = function (grunt) {
                         "star-property-hack": 2,
                         "outline-none": 2,
                         "import": 2,
-                        "ids": 2,
+                        "ids": false,
                         "underscore-property-hack": 2,
                         "rules-count": 2,
                         "qualified-headings": 2,

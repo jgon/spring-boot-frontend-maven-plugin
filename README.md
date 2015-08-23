@@ -27,7 +27,17 @@ You have to have installed ``nodejs`` and ``npm`` on your machine.
 
 * GruntFile
     * Where to find the Gruntfile.js to direct your build
-    * Default : plugin generate one in ``src/main/web/.tmp`` directory 
+    * Default : plugin generate one in ``src/main/web/.tmp`` directory
+     
+## Goals
+
+* prepare-deps
+    * Allow to download grunt and bower deps, this could be done during a specific profile to speed regular build
+    * Default phase : generate-resources
+    
+* build
+    * run grunt build 
+    * Default phase : compile
     
 ## Example
 
@@ -40,6 +50,18 @@ You have to have installed ``nodejs`` and ``npm`` on your machine.
                     <!-- default value -->
                     <workingDirectory>src/main/web</workingDirectory>
                 </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-deps</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

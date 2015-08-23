@@ -80,7 +80,7 @@ module.exports = function (grunt) {
                     "passfail": false,
                     "white": false,
                     "maxerr": 100,
-                    "predef": [],
+                    "predef": ["angular"],
                     "indent": 4
                 }
             }

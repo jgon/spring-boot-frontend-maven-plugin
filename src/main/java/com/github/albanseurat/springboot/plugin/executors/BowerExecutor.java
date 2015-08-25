@@ -20,12 +20,12 @@ public class BowerExecutor implements TaskExecutor {
 
     public void installDependency(String artefact, String version) throws MojoExecutionException, MojoFailureException {
         this.executeWithBuilder(
-                processBuilder.command(format("bower install %s#%s", artefact, version).split(" ")),
+                processBuilder.command(format("node_modules/bower/bin/bower install %s#%s", artefact, version).split(" ")),
                 logger);
     }
 
     public ProcessResult listDependency(String artefact) throws MojoExecutionException, MojoFailureException {
         return this.executeAndGetResult(
-                processBuilder.command(format("bower cache list %s", artefact).split(" ")), logger);
+                processBuilder.command(format("node_modules/bower/bin/bower cache list %s", artefact).split(" ")), logger);
     }
 }

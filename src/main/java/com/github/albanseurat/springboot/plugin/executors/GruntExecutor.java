@@ -23,7 +23,7 @@ public class GruntExecutor implements TaskExecutor {
 
     public void runTask(File gruntFile, String task) throws MojoFailureException, MojoExecutionException {
         this.executeWithBuilder(
-                processBuilder.command(format("grunt --base %s --gruntfile %s %s",
+                processBuilder.command(format("node_modules/grunt-cli/bin/grunt --base %s --gruntfile %s %s",
                         workingDirectory.getAbsolutePath(), gruntFile.getAbsolutePath(), task).split(" ")),
                 logger);
     }

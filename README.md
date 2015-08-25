@@ -2,6 +2,7 @@
 
 [![Apache License 2](https://img.shields.io/badge/license-ASF2-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0.txt)
 [![Build Status](https://travis-ci.org/AlbanSeurat/spring-boot-frontend-maven-plugin.svg?branch=master)](https://travis-ci.org/AlbanSeurat/spring-boot-frontend-maven-plugin)
+[![Download](https://api.bintray.com/packages/albanseurat/maven/spring-boot-frontend-maven-plugin/images/download.svg) ](https://bintray.com/albanseurat/maven/spring-boot-frontend-maven-plugin/_latestVersion)
 
 ## Description
 

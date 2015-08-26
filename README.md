@@ -2,45 +2,59 @@
 
 [![Apache License 2](https://img.shields.io/badge/license-ASF2-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0.txt)
 [![Build Status](https://travis-ci.org/AlbanSeurat/spring-boot-frontend-maven-plugin.svg?branch=master)](https://travis-ci.org/AlbanSeurat/spring-boot-frontend-maven-plugin)
-[![Download](https://api.bintray.com/packages/albanseurat/maven/spring-boot-frontend-maven-plugin/images/download.svg) ](https://bintray.com/albanseurat/maven/spring-boot-frontend-maven-plugin/_latestVersion)
 
 ## Description
 
-A Maven plugin allowing to integrate web resources into a spring-boot project.
-Following "Convention over configuration" approach, you can start-up building your front-end application without worrying about configuring the build.
+The ``spring-boot-frontend-maven-plugin`` is intended for Spring boot developers 
+that develop a frontend application as part of their ``Spring boot`` application.
 
-## Pre-requisites
+The ``spring-boot-frontend-maven-plugin`` enables to build a frontend application and package it for deployment together with a ``Spring boot`` application. 
 
-You have to have installed ``nodejs`` and ``npm`` on your machine.
+Currently, the plugin supports the ``Angular`` and ``Bootstrap`` frameworks for building frontend applications. 
 
-``Java 8`` and ``Maven 3.3`` also also required to build and use the plugin.
+## Prerequisites
+
+Please make sure the following components are installed on your machine before using the plugin:
+
+* ``maven 3.3`` [download](https://maven.apache.org/download.cgi?Preferred=ftp://mirror.reverse.net/pub/apache/)
+* ``Java 8`` [download](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+* ``nodejs`` [download](https://nodejs.org)
+* ``npm`` [download](https://www.npmjs.com/package/download)
 
 ## Configuration
 
-* npmDependencies
-    * List of node dependencies, this is where you want to configure your build dependencies
-    * Default: `bower@1.4.1, grunt-cli@0.1.13, grunt-contrib-jshint@0.11.2, grunt-lesslint@1.1.14, grunt-contrib-copy@0.8.0, 
-    grunt-contrib-less@1.0.1,grunt-contrib-uglify@0.9.1, grunt-contrib-concat@0.5.1, grunt-contrib-cssmin@0.13.0, grunt-filerev@2.3.1, grunt-usemin@2.6.1`
+The following options are available for configuring the plugin:
+
+* **``npmDependencies``**
+    * The list of ``npm`` dependencies. This is where you can configure the ``npm`` dependencies.
+    * By default the following dependencies are configured: 
+        * ``bower@1.4.1``
+        * ``grunt-cli@0.1.13``
+        * ``grunt-contrib-jshint@0.11.2`` 
+        * ``grunt-lesslint@1.1.14``
+        * ``grunt-contrib-copy@0.8.0`` 
+        * ``grunt-contrib-less@1.0.1``
+        * ``grunt-contrib-uglify@0.9.1``
+        * ``grunt-contrib-concat@0.5.1``
+        * ``grunt-contrib-cssmin@0.13.0``
+        * ``grunt-filerev@2.3.1``
+        * ``grunt-usemin@2.6.1``
   
-* bowerDependencies
-    * List of bower dependencies, this is where you want to configure your development dependencies
-    * Default: `angular#1.4.3, bootstrap#3.3.5, angular-ui-bootstrap#0.13.3`
+* **``bowerDependencies``**
+    * The list of ``bower`` dependencies. This is where you can configure the ``bower`` dependencies.
+    * By default the following dependencies are configured: 
+        * ``angular#1.4.3``
+        * ``bootstrap#3.3.5``
+        * ``angular-ui-bootstrap#0.13.3``
 
-* GruntFile
-    * Where to find the Gruntfile.js to direct your build
-    * Default : plugin generate one in ``src/main/web/.tmp`` directory
-     
-## Goals
+* **``GruntFile``**
+    * Indicates the location of the ``Gruntfile.js`` file used to build the frontend application.
+    * By default the ``spring-boot-frontend-maven-plugin`` plugin creates a ``Gruntfile.js`` in the spring-boot project's ``src/main/web/.tmp`` subdirectory. 
+    
+## Examples
 
-* prepare-deps
-    * Allow to download grunt and bower deps, this could be done during a specific profile to speed regular build
-    * Default phase : generate-resources
-    
-* build
-    * run grunt build 
-    * Default phase : compile
-    
-## Example
+### Example using a simple configuration
+The following example demonstrates a simple configuration of the ``spring-boot-frontend-maven-plugin``:
 
 ``` xml
     <build>
@@ -51,27 +65,23 @@ You have to have installed ``nodejs`` and ``npm`` on your machine.
                     <!-- default value -->
                     <workingDirectory>src/main/web</workingDirectory>
                 </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>prepare-deps</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <goals>
-                            <goal>build</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
 ```
 
-You put your less files into ``less`` subdirectory, javascript file into ``scripts`` directory and [grunt](http://gruntjs.com/) under the hood will uglify, minify and concat all resources for production system.
-I use [grunt-usemin](https://github.com/yeoman/grunt-usemin) from [yeoman](http://yeoman.io/) to minify resources and html files. 
+With the above configuration, the pluging looks for files in the following subdirectories under the ``workingDirectory``  
+directory specified in the pluging configuration section, in this example ``src/main/web``:
 
-Here an example of html file with [blocks](https://github.com/yeoman/grunt-usemin#blocks):
+* ``less`` files located in the ``less`` subdirectory 
+* ``javascript`` files in the ``scripts`` subdirectory 
+
+The plugin uses [grunt](http://gruntjs.com/) to uglify, minify and concatenate the frontend application resources.
+The pluging uses [grunt-usemin](https://github.com/yeoman/grunt-usemin) from [yeoman](http://yeoman.io/) to minify the resources and html files. 
+
+### Example using yeoman blocks 
+
+Here is an example of a html file using [blocks](https://github.com/yeoman/grunt-usemin#blocks):
 
 ``` html
 <!doctype html>
@@ -95,21 +105,27 @@ Here an example of html file with [blocks](https://github.com/yeoman/grunt-usemi
 </body>
 </html>
 ```
-This example is using angular.
-All resources (css, javascript, images _not yet_) will be generated into ``src/main/resources/static`` by default to allow spring-boot to expose it naturally.
+
+### Example using angular
+
+This is an example using angular.
+
+All the resources (css, javascript, images _not yet_) will be generated into the ``src/main/resources/static`` directory by default, following spring-boot convention for publishing static Web content.
+
+**TBD**
 
 ## Reporting Issues
 
-All issues can be reported at [https://github.com/AlbanSeurat/spring-boot-frontend-maven-plugin/issues](https://github.com/AlbanSeurat/spring-boot-frontend-maven-plugin/issues)
+Issues can be reported at [https://github.com/AlbanSeurat/spring-boot-frontend-maven-plugin/issues](https://github.com/AlbanSeurat/spring-boot-frontend-maven-plugin/issues)
 
 ## Code
 
-All code can be found at [https://github.com/AlbanSeurat/spring-boot-frontend-maven-plugin](https://github.com/AlbanSeurat/spring-boot-frontend-maven-plugin)
+All the code is available at [https://github.com/AlbanSeurat/spring-boot-frontend-maven-plugin](https://github.com/AlbanSeurat/spring-boot-frontend-maven-plugin)
 
 ## License
 
-All code distributed under [ASL 2.0](LICENSE).
+All the code distributed under the [ASL 2.0](LICENSE) license.
 
 ## Copyright
 
-© 2015 [Alban Seurat](http://www.albanseurat.com). All rights reserved.
+Copyright © 2015 [Alban Seurat](http://www.albanseurat.com). All rights reserved.
